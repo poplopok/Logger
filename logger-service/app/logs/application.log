@@ -1,6 +1,0 @@
-11:24:18.918 [main] INFO  com.mad.logger.Application - Запуск сервиса логирования с конфигурацией: AppConfig(redis=RedisConfig(host=localhost, port=6379, password=, activityChannel=logger:activity, errorChannel=logger:error), logger=LoggerConfig(logToFile=true, logFilePath=logs, rotationPeriod=daily, consoleLogLevel=INFO), api=ApiConfig(host=0.0.0.0, port=8095))
-11:24:19.316 [main] INFO  com.mad.logger.service.RedisService - Подписка на каналы Redis настроена: logger:activity, logger:error
-11:24:19.324 [main] INFO  c.mad.logger.service.LoggerService - Запущена обработка логов
-11:24:19.345 [main] INFO  ktor.application - Autoreload is disabled because the development mode is off.
-11:24:19.367 [main] INFO  ktor.application - Application started in 0.028 seconds.
-11:24:19.375 [DefaultDispatcher-worker-3] INFO  ktor.application - Responding at http://0.0.0.0:8095
