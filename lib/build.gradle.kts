@@ -1,53 +1,52 @@
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-    `maven-publish`
+    kotlin("jvm") version "1.9.0" // убираем alias — он локален, JitPack его не поймёт
     kotlin("plugin.serialization") version "1.9.0"
     `java-library`
+    `maven-publish`
 }
+
+group = "com.github.poplopok" // ← ОБЯЗАТЕЛЬНО для JitPack!
+version = "1.0.1"             // ← Должен совпадать с Git-тегом
 
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             from(components["java"])
-
-            // Задайте groupId, artifactId и version
-            groupId = "com.mad"               // Ваш groupId
-            artifactId = "my-kotlin-library"  // Ваш artifactId
-            version = "1.0.1"                 // Версия библиотеки
+            groupId = "com.github.poplopok"       // ← для JitPack
+            artifactId = "logger"                 // ← название библиотеки
+            version = "1.0.1"                     // ← как Git-тег
         }
-    }
-    repositories {
-        mavenLocal()  // Публикуем в локальный репозиторий (или настройте публикацию на удаленный репозиторий)
     }
 }
 
 repositories {
     mavenCentral()
+    maven("https://jitpack.io") // ← если используешь сторонние либы через JitPack
 }
 
 dependencies {
-    testImplementation(libs.junit.jupiter)
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
     implementation("redis.clients:jedis:4.4.3")
+    implementation("org.apache.commons:commons-math3:3.6.1") // напрямую вместо alias
+    implementation("com.google.guava:guava:32.1.2-jre")       // напрямую
 
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    api(libs.commons.math3)
-    implementation(libs.guava)
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.2")
 }
 
-tasks.named<Test>("test") {
+tasks.test {
     useJUnitPlatform()
 }
 
 tasks.withType<Jar> {
     manifest {
         attributes["Implementation-Title"] = "My Kotlin Library"
-        attributes["Implementation-Version"] = "1.0.0"
+        attributes["Implementation-Version"] = version
     }
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
