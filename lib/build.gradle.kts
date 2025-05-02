@@ -13,7 +13,7 @@ publishing {
             // Задайте groupId, artifactId и version
             groupId = "com.mad"               // Ваш groupId
             artifactId = "my-kotlin-library"  // Ваш artifactId
-            version = "1.0.0"                 // Версия библиотеки
+            version = "1.0.1"                 // Версия библиотеки
         }
     }
     repositories {
