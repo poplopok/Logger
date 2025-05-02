@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.github.poplopok" // ← ОБЯЗАТЕЛЬНО для JitPack!
-version = "1.0.1"             // ← Должен совпадать с Git-тегом
+version = "1.0.6"             // ← Должен совпадать с Git-тегом
 
 publishing {
     publications {
@@ -14,7 +14,7 @@ publishing {
             from(components["java"])
             groupId = "com.github.poplopok"       // ← для JitPack
             artifactId = "logger"                 // ← название библиотеки
-            version = "1.0.1"                     // ← как Git-тег
+            version = "1.0.6"                     // ← как Git-тег
         }
     }
 }
