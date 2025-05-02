@@ -12,3 +12,4 @@ plugins {
 
 
 rootProject.name = "Logger"
+include("lib") 
